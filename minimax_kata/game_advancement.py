@@ -1,5 +1,6 @@
-from minimax_kata             import arena
-from minimax_kata.executioner import Executioner
+from minimax_kata                import arena
+from minimax_kata.executioner    import Executioner
+from minimax_kata.game_presenter import GamePresenter
 
 class GameAdvancement:
   def __init__(self, game, move):
@@ -23,6 +24,9 @@ class GameAdvancement:
       self.__claim_arena_space()
 
     self.__perform_executions()
+    self.game.update_current_player()
+
+    return GamePresenter(self.game)
 
   # Private
 

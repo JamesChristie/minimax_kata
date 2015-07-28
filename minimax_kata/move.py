@@ -1,5 +1,12 @@
 from minimax_kata import arena
 
+def valid_directions_for(subject_direction):
+  return [
+    direction for direction
+    in list(arena.DIRECTIONS)
+    if direction is not arena.opposing_direction_for(subject_direction)
+  ]
+
 class Move:
   def __init__(self, player, direction):
     self.player    = player

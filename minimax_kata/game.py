@@ -17,6 +17,10 @@ class Game:
     self.player1.direction = DIRECTIONS.south
     self.player2.direction = DIRECTIONS.north
 
+    self.move_count     = 0
+    self.last_player    = None
+    self.current_player = self.player1
+
   def is_over(self):
     return (
       self.player1.is_dead() or self.player2.is_dead()
@@ -51,3 +55,13 @@ class Game:
 
   def claim_space_for(self, player, position):
     self.arena.claim_space_for(player, position)
+
+  def update_current_player(self):
+    pass
+
+  def get_next_player(self):
+    return next(
+      player for player
+      in [self.player1, self.player2]
+      if player is not self.current_player
+    )

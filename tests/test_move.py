@@ -1,9 +1,35 @@
 import unittest
 
 from minimax_kata.move   import Move
+from minimax_kata.move   import valid_directions_for
 from minimax_kata.game   import Game
 from minimax_kata.player import Player
 from minimax_kata.arena  import DIRECTIONS
+
+class TestValidDirectionHelper(unittest.TestCase):
+  def setUp(self):
+    self.direction        = DIRECTIONS.north
+    self.valid_directions = valid_directions_for(self.direction)
+
+  def test_west_is_in_list(self):
+    self.assertTrue(
+      DIRECTIONS.west in self.valid_directions
+    )
+
+  def test_north_is_in_list(self):
+    self.assertTrue(
+      DIRECTIONS.north in self.valid_directions
+    )
+
+  def test_east_is_in_list(self):
+    self.assertTrue(
+      DIRECTIONS.east in self.valid_directions
+    )
+
+  def test_south_not_in_list(self):
+    self.assertTrue(
+      DIRECTIONS.south not in self.valid_directions
+    )
 
 class TestMoveForwardToAnEmptySpace(unittest.TestCase):
   def setUp(self):
