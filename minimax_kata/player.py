@@ -10,3 +10,9 @@ class Player:
 
   def is_dead(self):
     return not self.is_alive()
+
+  def kill(self):
+    self.alive = False
+
+  def resurrect(self):
+    self.alive = True

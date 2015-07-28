@@ -48,3 +48,27 @@ class Arena:
 
   def get_lower_right_position(self):
     return (self.width, self.length)
+
+  def get_owner(self, position):
+    return self.space.get(position, None)
+
+  def player_is_in_bounds(self, player):
+    return (
+      0 < player.position[0] <= self.width and
+      0 < player.position[1] <= self.length
+    )
+
+  def player_is_out_of_bounds(self, player):
+    return not self.player_is_in_bounds(player)
+
+  def claim_space_for(self, player, position):
+    if self.__claimable_for(player, position):
+      self.space[position] = player
+
+  # Private
+
+  def __claimable_for(self, player, position):
+    return (
+      not self.get_owner(position) and
+      self.player_is_in_bounds(player)
+    )

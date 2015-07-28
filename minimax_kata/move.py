@@ -10,6 +10,11 @@ class Move:
 
   def is_not_backwards(self):
     return self.direction is not self.__backwards()
+
+  def new_position(self):
+    return arena.translated_position(
+      self.player.position, self.direction
+    )
   
   # Private
   

@@ -39,3 +39,15 @@ class Game:
         in [self.player1, self.player2]
         if player.is_alive()
       )
+
+  def get_owner(self, position):
+    return self.arena.get_owner(position)
+
+  def player_is_in_bounds(self, player):
+    return self.arena.player_is_in_bounds(player)
+
+  def player_is_out_of_bounds(self, player):
+    return self.arena.player_is_out_of_bounds(player)
+
+  def claim_space_for(self, player, position):
+    self.arena.claim_space_for(player, position)
