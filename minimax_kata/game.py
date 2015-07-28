@@ -1,3 +1,4 @@
+from minimax_kata.arena  import DIRECTIONS
 from minimax_kata.arena  import Arena
 from minimax_kata.player import Player
 
@@ -12,6 +13,9 @@ class Game:
       player_two_name,
       self.arena.get_lower_right_position()
     )
+
+    self.player1.direction = DIRECTIONS.south
+    self.player2.direction = DIRECTIONS.north
 
   def is_over(self):
     return (

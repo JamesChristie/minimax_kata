@@ -1,6 +1,48 @@
 import unittest
 
+from minimax_kata.arena import DIRECTIONS
+from minimax_kata.arena import translated_position
 from minimax_kata.arena import Arena
+
+class TestNorthTranslation(unittest.TestCase):
+  def setUp(self):
+    self.position  = (2, 2)
+    self.direction = DIRECTIONS.north
+
+  def test_translated_position(self):
+    self.assertEqual(
+      translated_position(self.position, self.direction), (2, 1)
+    )
+
+class TestEastTranslation(unittest.TestCase):
+  def setUp(self):
+    self.position  = (2, 2)
+    self.direction = DIRECTIONS.east
+
+  def test_translated_position(self):
+    self.assertEqual(
+      translated_position(self.position, self.direction), (3, 2)
+    )
+
+class TestSouthTranslation(unittest.TestCase):
+  def setUp(self):
+    self.position  = (2, 2)
+    self.direction = DIRECTIONS.south
+
+  def test_translated_position(self):
+    self.assertEqual(
+      translated_position(self.position, self.direction), (2, 3)
+    )
+
+class TestWestTranslation(unittest.TestCase):
+  def setUp(self):
+    self.position  = (2, 2)
+    self.direction = DIRECTIONS.west
+
+  def test_translated_position(self):
+    self.assertEqual(
+      translated_position(self.position, self.direction), (1, 2)
+    )
 
 class TestArena(unittest.TestCase):
   def setUp(self):
