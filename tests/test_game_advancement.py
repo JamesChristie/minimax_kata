@@ -47,7 +47,7 @@ class TestAdvancingInvalidMove(unittest.TestCase):
 
   def test_arena_space_ownership(self):
     self.assertIsNone(
-      self.space.get(self.new_position, None)
+      self.space.get((1, 1), None)
     )
 
   def test_game_is_over(self):
@@ -96,7 +96,7 @@ class TestAdvancingValidMoveToEmptySpace(unittest.TestCase):
 
   def test_arena_space_ownership(self):
     self.assertEqual(
-      self.space.get(self.new_position, None), self.player
+      self.space.get((1, 1), None), self.player
     )
 
   def test_game_is_over(self):
@@ -145,7 +145,7 @@ class TestAdvancingValidMoveToClaimedSpace(unittest.TestCase):
 
   def test_arena_space_ownership(self):
     self.assertEqual(
-      self.space.get(self.new_position, None), self.player2
+      self.space.get((1, 2), None), self.player2
     )
 
   def test_game_is_over(self):
@@ -169,7 +169,7 @@ class TestAdvancingValidMoveToWall(unittest.TestCase):
     self.player          = self.game.player1
     self.player2         = self.game.player2
     self.player.position = (1, 1)
-    self.move            = Move(self.player, DIRECTIONS.south)
+    self.move            = Move(self.player, DIRECTIONS.west)
     self.new_position    = translated_position(
       self.player.position, DIRECTIONS.west
     )
@@ -194,7 +194,7 @@ class TestAdvancingValidMoveToWall(unittest.TestCase):
 
   def test_arena_space_ownership(self):
     self.assertIsNone(
-      self.space.get(self.new_position, None)
+      self.space.get((1, 1), None)
     )
 
   def test_game_is_over(self):
@@ -228,12 +228,12 @@ class TestAdvancingValidMoveToOtherPlayer(unittest.TestCase):
 
   def test_player_position(self):
     self.assertEqual(
-      self.player.position, (0, 1)
+      self.player.position, (1, 2)
     )
 
   def test_player_direction(self):
     self.assertEqual(
-      self.player.direction, DIRECTIONS.west
+      self.player.direction, DIRECTIONS.south
     )
 
   def test_player_vital_status(self):
@@ -243,8 +243,8 @@ class TestAdvancingValidMoveToOtherPlayer(unittest.TestCase):
     self.assertTrue(self.player2.is_dead())
 
   def test_arena_space_ownership(self):
-    self.assertIsNone(
-      self.space.get(self.new_position, None)
+    self.assertEqual(
+      self.space.get((1, 1)), self.player
     )
 
   def test_game_is_over(self):
