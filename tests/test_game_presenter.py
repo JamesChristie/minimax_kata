@@ -1,8 +1,11 @@
 import unittest
 
-from minimax_kata.game_presenter import GamePresenter
-from minimax_kata.game           import Game
-from minimax_kata.arena          import DIRECTIONS
+from minimax_kata.game_presenter   import GamePresenter
+from minimax_kata.space_presenters import Space
+from minimax_kata.space_presenters import Trail
+from minimax_kata.space_presenters import Player
+from minimax_kata.game             import Game
+from minimax_kata.arena            import DIRECTIONS
 
 class TestGamePresenter(unittest.TestCase):
   def setUp(self):

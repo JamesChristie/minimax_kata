@@ -22,3 +22,9 @@ class GamePresenter:
 
   def get_player_two_postion(self):
     return self.game.player2.position
+
+  def get_copy(self):
+    return GameCopier(self.game).generate()
+
+  def get_text_visualization(self):
+    return GameTextView(self.game).generate()
