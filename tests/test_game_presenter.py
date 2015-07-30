@@ -48,12 +48,7 @@ class TestGamePresenter(unittest.TestCase):
       self.presenter.get_next_player(), self.game.player2
     )
 
-  def test_get_player_one_position(self):
+  def test_get_current_player_position(self):
     self.assertEqual(
-      self.presenter.get_player_one_postion(), (1, 2)
-    )
-
-  def test_get_player_two_position(self):
-    self.assertEqual(
-      self.presenter.get_player_two_postion(), (4, 3)
+      self.presenter.get_current_player_position(), (1, 2)
     )

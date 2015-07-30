@@ -21,11 +21,8 @@ class GamePresenter:
   def get_next_player(self):
     return self.game.get_next_player()
 
-  def get_player_one_postion(self):
-    return self.game.player1.position
-
-  def get_player_two_postion(self):
-    return self.game.player2.position
+  def get_current_player_position(self):
+    return self.get_current_player().position
 
   def get_copy(self):
     return GameCopier(self.game).generate()
