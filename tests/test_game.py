@@ -1,6 +1,7 @@
 import unittest
 
 from minimax_kata.game import Game
+from minimax_kata.game import DIRECTIONS
 
 class TestOngoingGame(unittest.TestCase):
   def setUp(self):
@@ -17,6 +18,23 @@ class TestOngoingGame(unittest.TestCase):
 
   def test_get_winner(self):
     self.assertIsNone(self.game.get_winner())
+
+  def test_get_available_directions(self):
+    expected_directions = [
+      DIRECTIONS.west,
+      DIRECTIONS.south,
+      DIRECTIONS.east
+    ]
+
+    self.assertEqual(
+      set(self.game.get_available_directions()),
+      set(expected_directions)
+    )
+
+  def test_get_current_player_position(self):
+    self.assertEqual(
+      self.game.get_current_player_position(), (1, 1)
+    )
 
 class TestWonGame(unittest.TestCase):
   def setUp(self):

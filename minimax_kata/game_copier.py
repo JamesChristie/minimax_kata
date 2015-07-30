@@ -1,4 +1,3 @@
-from minimax_kata.game  import Game
 from minimax_kata.arena import Arena
 
 class GameCopier:
@@ -9,7 +8,7 @@ class GameCopier:
   # as a new games with Arena and Player members are
   # created, then promptly discarded and replaced
   def generate(self):
-    game_copy = Game()
+    game_copy = type(self.game)()
     self.__mutate_members(game_copy)
     return game_copy
 

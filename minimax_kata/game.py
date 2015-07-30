@@ -1,6 +1,9 @@
-from minimax_kata.arena  import DIRECTIONS
-from minimax_kata.arena  import Arena
-from minimax_kata.player import Player
+from minimax_kata.move           import valid_directions_for
+from minimax_kata.arena          import DIRECTIONS
+from minimax_kata.arena          import Arena
+from minimax_kata.player         import Player
+from minimax_kata.game_copier    import GameCopier
+from minimax_kata.game_text_view import GameTextView
 
 class Game:
   def __init__(self, player_one_name="1", player_two_name="2"):
@@ -56,12 +59,22 @@ class Game:
   def claim_space_for(self, player, position):
     self.arena.claim_space_for(player, position)
 
-  def update_current_player(self):
-    pass
-
   def get_next_player(self):
     return next(
       player for player
       in [self.player1, self.player2]
       if player is not self.current_player
     )
+
+  def get_available_directions(self):
+    direction = self.current_player.direction
+    return valid_directions_for(direction)
+
+  def get_current_player_position(self):
+    return self.current_player.position
+
+  def get_copy(self):
+    return GameCopier(self).generate()
+
+  def render_current_arena_state(self):
+    return GameTextView(self).generate()
