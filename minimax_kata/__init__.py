@@ -25,3 +25,12 @@ def make_move(game_presenter, direction):
   advancement = GameAdvancement(game_presenter.game, move)
 
   return advancement.do()
+
+def set_arena_state(game_presenter, new_space, player1_position, player2_position):
+  new_game = Game()
+
+  new_game.player1.position = player1_position
+  new_game.player2.position = player2_position
+  new_game.arena.space      = new_space
+
+  return GamePresenter(new_game)

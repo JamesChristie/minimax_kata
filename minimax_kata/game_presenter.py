@@ -1,8 +1,12 @@
-from minimax_kata.move import valid_directions_for
+from minimax_kata.move           import valid_directions_for
+from minimax_kata.game_copier    import GameCopier
+from minimax_kata.game_text_view import GameTextView
 
 class GamePresenter:
   def __init__(self, game):
-    self.game = game
+    self.game    = game
+    self.player1 = self.game.player1
+    self.player2 = self.game.player2
 
   def get_current_arena_state(self):
     pass
