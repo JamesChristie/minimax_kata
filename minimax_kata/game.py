@@ -60,11 +60,8 @@ class Game:
     self.arena.claim_space_for(player, position)
 
   def get_next_player(self):
-    return next(
-      player for player
-      in [self.player1, self.player2]
-      if player is not self.current_player
-    )
+    if not self.is_over():
+      return self.last_player
 
   def get_available_directions(self):
     direction = self.current_player.direction

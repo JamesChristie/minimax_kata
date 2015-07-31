@@ -5,6 +5,13 @@ class Player:
     self.alive     = True
     self.direction = None
 
+  def __eq__(self, other):
+    return (isinstance(other, self.__class__)
+      and self.__dict__ == other.__dict__)
+
+  def __ne__(self, other):
+    return not self.__eq__(other)
+
   def is_alive(self):
     return bool(self.alive)
 
@@ -16,3 +23,9 @@ class Player:
 
   def resurrect(self):
     self.alive = True
+
+  def get_copy(self):
+    new_player           = Player(self.name, self.position)
+    new_player.direction = self.direction
+
+    return new_player
