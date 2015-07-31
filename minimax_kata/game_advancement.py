@@ -21,6 +21,7 @@ class GameAdvancement:
     if self.move.is_valid():
       self.__move_player()
       self.__claim_arena_space()
+      self.__swap_current_player()
 
     self.__perform_executions()
 
@@ -34,6 +35,10 @@ class GameAdvancement:
     self.game.claim_space_for(
       self.get_current_player(), self.original_position
     )
+
+  def __swap_current_player(self):
+    self.game.last_player    = self.game.current_player
+    self.game.current_player = self.game.get_next_player()
 
   def __perform_executions(self):
     Executioner(self.game).do()

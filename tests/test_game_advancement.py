@@ -14,13 +14,14 @@ from minimax_kata.arena            import translated_position
 
 class TestAdvancingInvalidMove(unittest.TestCase):
   def setUp(self):
-    self.game            = Game()
-    self.space           = self.game.arena.space
-    self.player          = self.game.player1
-    self.player2         = self.game.player2
-    self.player.position = (1, 1)
-    self.move            = Move(self.player, DIRECTIONS.south)
-    self.new_position    = translated_position(
+    self.game                = Game()
+    self.space               = self.game.arena.space
+    self.player              = self.game.player1
+    self.player2             = self.game.player2
+    self.game.current_player = self.player
+    self.player.position     = (1, 1)
+    self.move                = Move(self.player, DIRECTIONS.south)
+    self.new_position        = translated_position(
       self.player.position, DIRECTIONS.south
     )
 
@@ -62,15 +63,24 @@ class TestAdvancingInvalidMove(unittest.TestCase):
   def test_game_get_winner(self):
     self.assertIsNone(self.game.get_winner())
 
+  def test_current_player(self):
+    self.assertTrue(
+      self.game.current_player is self.player
+    )
+
+  def test_last_player(self):
+    self.assertIsNone(self.game.last_player)
+
 class TestAdvancingValidMoveToEmptySpace(unittest.TestCase):
   def setUp(self):
-    self.game            = Game()
-    self.space           = self.game.arena.space
-    self.player          = self.game.player1
-    self.player2         = self.game.player2
-    self.player.position = (1, 1)
-    self.move            = Move(self.player, DIRECTIONS.south)
-    self.new_position    = translated_position(
+    self.game                = Game()
+    self.space               = self.game.arena.space
+    self.player              = self.game.player1
+    self.player2             = self.game.player2
+    self.game.current_player = self.player
+    self.player.position     = (1, 1)
+    self.move                = Move(self.player, DIRECTIONS.south)
+    self.new_position        = translated_position(
       self.player.position, DIRECTIONS.south
     )
 
@@ -110,6 +120,16 @@ class TestAdvancingValidMoveToEmptySpace(unittest.TestCase):
 
   def test_game_get_winner(self):
     self.assertIsNone(self.game.get_winner())
+
+  def test_current_player(self):
+    self.assertTrue(
+      self.game.current_player is self.player2
+    )
+
+  def test_last_player(self):
+    self.assertTrue(
+      self.game.last_player is self.player
+    )
 
 class TestAdvancingValidMoveToClaimedSpace(unittest.TestCase):
   def setUp(self):
