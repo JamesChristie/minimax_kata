@@ -9,7 +9,7 @@ def get_new_space(width, length):
 def tuple_list(width, length):
   return list(
     itertools.product(
-      list_for_span(length), list_for_span(width)
+      list_for_span(width), list_for_span(length)
     )
   )
 

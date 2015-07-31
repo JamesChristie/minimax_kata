@@ -20,12 +20,12 @@ class TestGameCopier(unittest.TestCase):
 
   def test_arena_width(self):
     self.assertEqual(
-      self.arena_copy.width,  self.arena.width
+      self.arena_copy.get_width(),  self.arena.get_width()
     )
 
   def test_arena_length(self):
     self.assertEqual(
-      self.arena_copy.length, self.arena.length
+      self.arena_copy.get_length(), self.arena.get_length()
     )
 
   def test_arena_space(self):

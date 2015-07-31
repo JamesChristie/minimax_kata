@@ -28,7 +28,11 @@ class GameCopier:
   def __get_arena_copy(self):
     original = self.game.arena
 
-    arena_copy       = Arena(original.width, original.length)
+    arena_copy = Arena(
+      width=original.get_width(),
+      length=original.get_length()
+    )
+
     arena_copy.space = original.space.copy()
 
     return arena_copy

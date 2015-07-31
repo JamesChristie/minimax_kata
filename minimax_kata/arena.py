@@ -31,31 +31,33 @@ def translated_position(position, direction):
 
 class Arena:
   def __init__(self, width=4, length=4):
-    self.width  = width
-    self.length = length
-    self.space  = get_new_space(
-      self.width, self.length
-    )
+    self.space = get_new_space(width, length)
+
+  def get_width(self):
+    return max(self.__width_values())
+
+  def get_length(self):
+    return max(self.__length_values())
 
   def get_upper_left_position(self):
     return (1, 1)
 
   def get_upper_right_position(self):
-    return (self.width, 1)
+    return (self.get_width(), 1)
 
   def get_lower_left_position(self):
-    return (1, self.length)
+    return (1, self.get_length())
 
   def get_lower_right_position(self):
-    return (self.width, self.length)
+    return (self.get_width(), self.get_length())
 
   def get_owner(self, position):
     return self.space.get(position, None)
 
   def player_is_in_bounds(self, player):
     return (
-      0 < player.position[0] <= self.width and
-      0 < player.position[1] <= self.length
+      0 < player.position[0] <= self.get_width() and
+      0 < player.position[1] <= self.get_length()
     )
 
   def player_is_out_of_bounds(self, player):
@@ -66,6 +68,18 @@ class Arena:
       self.space[position] = player
 
   # Private
+
+  def __width_values(self):
+    return set([
+      x for x, y
+      in self.space.keys()
+    ])
+
+  def __length_values(self):
+    return set([
+      y for x, y
+      in self.space.keys()
+    ])
 
   def __claimable_for(self, player, position):
     return (
