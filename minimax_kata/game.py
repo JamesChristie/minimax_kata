@@ -71,9 +71,6 @@ class Game:
     direction = self.current_player.direction
     return valid_directions_for(direction)
 
-  def get_current_player_position(self):
-    return self.current_player.position
-
   def get_copy(self):
     return GameCopier(self).generate()
 

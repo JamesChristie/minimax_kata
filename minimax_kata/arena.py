@@ -22,7 +22,7 @@ DIRECTION_DIFFERENTIALS = {
 }
 
 def opposing_direction_for(direction):
-  return OPPOSING_DIRECTIONS[direction]
+  return OPPOSING_DIRECTIONS.get(direction, None)
 
 def translated_position(position, direction):
   return tuple(map(

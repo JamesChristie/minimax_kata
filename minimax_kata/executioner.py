@@ -22,7 +22,5 @@ class Executioner:
       self.collision_has_ocurred()
     )
 
-  # Private
-
   def collision_has_ocurred(self):
     return len(set(self.get_positions())) == 1

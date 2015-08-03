@@ -31,11 +31,6 @@ class TestOngoingGame(unittest.TestCase):
       set(expected_directions)
     )
 
-  def test_get_current_player_position(self):
-    self.assertEqual(
-      self.game.get_current_player_position(), (1, 1)
-    )
-
 class TestWonGame(unittest.TestCase):
   def setUp(self):
     self.game = Game()
