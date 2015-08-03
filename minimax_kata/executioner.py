@@ -24,3 +24,7 @@ class Executioner:
 
   def collision_has_ocurred(self):
     return len(set(self.get_positions())) == 1
+
+  def get_collision_position(self):
+    if self.collision_has_ocurred():
+      return self.game.player1.position

@@ -3,7 +3,6 @@ from minimax_kata.arena          import DIRECTIONS
 from minimax_kata.arena          import Arena
 from minimax_kata.player         import Player
 from minimax_kata.game_copier    import GameCopier
-from minimax_kata.game_text_view import GameTextView
 
 class Game:
   def __init__(self, player_one_name="1", player_two_name="2"):
@@ -73,6 +72,3 @@ class Game:
 
   def get_copy(self):
     return GameCopier(self).generate()
-
-  def render_current_arena_state(self):
-    return GameTextView(self).generate()
