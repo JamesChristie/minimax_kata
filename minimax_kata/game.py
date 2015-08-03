@@ -55,8 +55,8 @@ class Game:
   def player_is_out_of_bounds(self, player):
     return self.arena.player_is_out_of_bounds(player)
 
-  def claim_space_for(self, player, position):
-    self.arena.claim_space_for(player, position)
+  def claim_space_for(self, player, position, force=False):
+    self.arena.claim_space_for(player, position, force=force)
 
   def get_next_player(self):
     if not self.is_won():

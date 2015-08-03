@@ -8,7 +8,7 @@ class CharInterpreter:
     self.game   = game
     self.length = length
     self.width  = width
-    self.char   = '{} '.format(char)
+    self.char   = '{} '.format(char.strip()) # re-pad
 
   def do(self):
     if self.__is_player1():
@@ -18,9 +18,9 @@ class CharInterpreter:
       self.game.player2.position = self.get_position()
       self.game.player2.direction = self.get_direction(PLAYER_TWO_CHARS)
     elif self.__is_player1_trail():
-      self.game.claim_space_for(self.game.player1, self.get_position())
+      self.game.claim_space_for(self.game.player1, self.get_position(), force=True)
     elif self.__is_player2_trail():
-      self.game.claim_space_for(self.game.player2, self.get_position())
+      self.game.claim_space_for(self.game.player2, self.get_position(), force=True)
 
   def get_position(self):
     return (self.width, self.length)

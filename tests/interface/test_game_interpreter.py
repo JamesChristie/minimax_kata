@@ -5,7 +5,14 @@ from minimax_kata.arena                      import DIRECTIONS
 
 class TestGameInterpreter(unittest.TestCase):
   def setUp(self):
-    self.game_string      = '██████████\n██① ☐ ☐ ██\n██↓ ☐ ▲ ██\n██☐ ☐ ② ██\n██████████'
+    self.game_string = """\
+      ██████████
+      ██① ☐ ☐ ██
+      ██↓ ☐ ▲ ██
+      ██☐ ☐ ② ██
+      ██████████"""
+
+    self.game_string = self.game_string.replace("      ", "")
     self.interpreted_game = GameInterpreter(self.game_string).do()
 
   def test_width(self):
@@ -47,5 +54,22 @@ class TestGameInterpreter(unittest.TestCase):
   def test_player2_trail(self):
     self.assertTrue(
       self.interpreted_game.get_owner((3, 3))
+        is self.interpreted_game.player2
+    )
+
+class TestOwnershipRegression(unittest.TestCase):
+  def setUp(self):
+    self.game_string = """\
+      ████████
+      ██↓ ② ██
+      ██☐ ▼ ██
+      ████████"""
+
+    self.game_string = self.game_string.replace("      ", "")
+    self.interpreted_game = GameInterpreter(self.game_string).do()
+
+  def test_player2_trail(self):
+    self.assertTrue(
+      self.interpreted_game.get_owner((2, 1))
         is self.interpreted_game.player2
     )

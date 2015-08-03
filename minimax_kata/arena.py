@@ -55,16 +55,13 @@ class Arena:
     return self.space.get(position, None)
 
   def player_is_in_bounds(self, player):
-    return (
-      0 < player.position[0] <= self.get_width() and
-      0 < player.position[1] <= self.get_length()
-    )
+    return player.position in self.space.keys()
 
   def player_is_out_of_bounds(self, player):
     return not self.player_is_in_bounds(player)
 
-  def claim_space_for(self, player, position):
-    if self.__claimable_for(player, position):
+  def claim_space_for(self, player, position, force=False):
+    if self.__claimable_for(player, position) or force:
       self.space[position] = player
 
   # Private
@@ -83,6 +80,6 @@ class Arena:
 
   def __claimable_for(self, player, position):
     return (
-      not self.get_owner(position) and
-      self.player_is_in_bounds(player)
+      not self.get_owner(position)
+        and self.player_is_in_bounds(player)
     )
