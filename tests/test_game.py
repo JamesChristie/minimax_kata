@@ -1,7 +1,31 @@
 import unittest
 
 from minimax_kata.game import Game
+from minimax_kata.game import get_advanced_game
 from minimax_kata.game import DIRECTIONS
+
+class TestGameAdvancementInvocation(unittest.TestCase):
+  def setUp(self):
+    self.game      = Game()
+    self.direction = DIRECTIONS.south
+
+    self.advanced_game = get_advanced_game(self.game, self.direction)
+
+  def test_advanced_game_identity(self):
+    self.assertFalse(
+      self.game is self.advanced_game
+    )
+
+  def test_player1_position(self):
+    self.assertEqual(
+      self.advanced_game.player1.position, (1, 2)
+    )
+
+  def test_player2_position(self):
+    self.assertEqual(
+      self.advanced_game.player2.position,
+      self.game.player2.position
+    )
 
 class TestOngoingGame(unittest.TestCase):
   def setUp(self):

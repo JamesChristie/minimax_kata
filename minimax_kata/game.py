@@ -1,8 +1,18 @@
-from minimax_kata.move           import valid_directions_for
-from minimax_kata.arena          import DIRECTIONS
-from minimax_kata.arena          import Arena
-from minimax_kata.player         import Player
-from minimax_kata.game_copier    import GameCopier
+from minimax_kata.move             import valid_directions_for
+from minimax_kata.move             import Move
+from minimax_kata.arena            import DIRECTIONS
+from minimax_kata.arena            import Arena
+from minimax_kata.player           import Player
+from minimax_kata.game_copier      import GameCopier
+from minimax_kata.game_advancement import GameAdvancement
+
+def get_advanced_game(game, direction):
+  potential_game = GameCopier(game).generate()
+  subject        = potential_game.current_player
+  move           = Move(subject, direction)
+  GameAdvancement(potential_game, move).do()
+
+  return potential_game
 
 class Game:
   def __init__(self, player_one_name="1", player_two_name="2"):
