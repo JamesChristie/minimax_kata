@@ -91,23 +91,23 @@ class TestThatWallIsAvoidedInTwoByThree(unittest.TestCase):
       set([DIRECTIONS.south, DIRECTIONS.east])
     )
 
-# class TestThatTrailsIsAvoidedInTwoByTwo(unittest.TestCase):
-#   def setUp(self):
-#     self.game_string  = """\
-#       ████████
-#       ██↓ ② ██
-#       ██☐ ▼ ██
-#       ████████"""
-# 
-#     self.game = GameInterpreter(self.game_string.replace("      ", "")).do()
-#     self.minimax_solver = MinimaxSolver(self.game)
-# 
-#   def test_best_moves(self):
-#     self.assertEqual(
-#       set(self.minimax_solver.get_best_moves()),
-#       set([DIRECTIONS.south])
-#     )
-# 
+class TestThatTrailsIsAvoidedInTwoByTwo(unittest.TestCase):
+  def setUp(self):
+    self.game_string  = """\
+      ████████
+      ██↓ ② ██
+      ██☐ ▼ ██
+      ████████"""
+
+    self.game = GameInterpreter(self.game_string.replace("      ", "")).do()
+    self.minimax_solver = MinimaxSolver(self.game)
+
+  def test_best_moves(self):
+    self.assertEqual(
+      set(self.minimax_solver.get_best_moves()),
+      set([DIRECTIONS.south])
+    )
+
 # class TestThatPlayerIsAvoided(unittest.TestCase):
 #   def setUp(self):
 #     self.game_string  = """\

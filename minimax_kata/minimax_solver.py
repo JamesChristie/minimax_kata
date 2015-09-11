@@ -11,5 +11,5 @@ class MinimaxSolver:
     return [
       presenter.direction for presenter
       in self.potential_games
-      if not presenter.is_wall()
+      if not presenter.is_wall() and not presenter.is_trail()
     ]
