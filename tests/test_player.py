@@ -22,6 +22,14 @@ class TestBasicPlayer(unittest.TestCase):
   def test_is_dead(self):
     self.assertFalse(self.player.is_dead())
 
+class TestPlayerEquality(unittest.TestCase):
+  def setUp(self):
+    self.player1 = Player("player1", (1, 1))
+    self.player2 = Player("player1", (1, 2))
+
+  def test_equality(self):
+    self.assertTrue(self.player1 == self.player2)
+
 class TestCopiedPlayer(unittest.TestCase):
   def setUp(self):
     self.player           = Player("Ada", (1, 1))
