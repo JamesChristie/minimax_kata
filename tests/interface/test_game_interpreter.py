@@ -73,3 +73,23 @@ class TestOwnershipRegression(unittest.TestCase):
       self.interpreted_game.get_owner((2, 1))
         is self.interpreted_game.player2
     )
+
+class TestBoundsRegression(unittest.TestCase):
+  def setUp(self):
+    self.game_string = """\
+      ████████
+      ██① ☐ ██
+      ██↓ ▲ ██
+      ██☐ ████
+      ████████"""
+
+    self.game_string = self.game_string.replace("      ", "")
+    self.interpreted_game = GameInterpreter(self.game_string).do()
+    self.interpreted_game.player1.position = (2, 3)
+
+  def test_position_two_three(self):
+    self.assertTrue(
+      self.interpreted_game.player_is_out_of_bounds(
+        self.interpreted_game.player1
+      )
+    )

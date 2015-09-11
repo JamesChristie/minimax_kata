@@ -36,7 +36,7 @@ class GameInterpreter:
     new_space = {}
 
     for length in range(1, len(self.char_space) + 1):
-      for width in range(1, self.__get_max_width() + 1):
+      for width in range(1, len(self.char_space[length - 1]) + 1):
         new_space[(width, length)] = None
 
     self.game.arena.space = new_space
