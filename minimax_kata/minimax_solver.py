@@ -25,9 +25,17 @@ class MinimaxSolver:
     )
 
   def __get_score(self, presenter):
-    if presenter.is_alive():
-      return ALIVE_SCORE
-    elif presenter.is_crash():
+    if presenter.is_crash():
       return CRASH_SCORE
-    else:
+    elif not presenter.is_alive():
       return DEATH_SCORE
+    else:
+      return self.__calculate_score(presenter)
+
+  def __calculate_score(self, presenter):
+    solver = MinimaxSolver(presenter.potential_game)
+
+    if self.game.current_player == presenter.get_current_player():
+      return solver.get_max_score()
+    else:
+      return - solver.get_max_score()
