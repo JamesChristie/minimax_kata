@@ -1,17 +1,15 @@
 from minimax_kata.arena import DIRECTIONS
 
+from minimax_kata.potential_game_presenter import get_potential_games
+
 class MinimaxSolver:
   def __init__(self, game):
     self.game = game
+    self.potential_games = get_potential_games(self.game)
 
   def get_best_moves(self):
-    available = self.game.get_available_directions()
-
-    if DIRECTIONS.north not in available:
-      return [DIRECTIONS.south]
-    elif DIRECTIONS.east not in available:
-      return [DIRECTIONS.west]
-    elif DIRECTIONS.south not in available:
-      return [DIRECTIONS.north]
-    else:
-      return [DIRECTIONS.east]
+    return [
+      presenter.direction for presenter
+      in self.potential_games
+      if not presenter.is_wall()
+    ]
